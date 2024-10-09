@@ -1,0 +1,37 @@
+Static Allocation Experiment Results:
+Job Completion Time: Approximately 22 seconds (based on the logs)
+Number of Executors: 2 (configured in run_static_allocation.sh)
+Resource Usage: Unable to obtain accurate measurements due to Metrics Server issues
+Reshuffling Events: No explicit reshuffling events observed in the logs
+
+Dynamic Allocation Experiment Results:
+Job Completion Time: Approximately 23 seconds (based on the logs)
+Number of Executors: Started with 1, potentially scaled up to 5 (configured in run_dynamic_allocation.sh)
+Resource Usage: Unable to obtain accurate measurements due to Metrics Server issues
+Reshuffling Events: No explicit reshuffling events observed in the logs
+
+Analysis:
+1. Comparison of job completion times:
+   The dynamic allocation experiment completed in approximately 23 seconds, while the static allocation experiment took about 22 seconds. This suggests that for this particular workload, static allocation performed slightly better. However, the difference is minimal and may not be statistically significant.
+
+2. Comparison of resource usage:
+   Due to issues with the Metrics Server, we couldn't obtain accurate resource usage statistics. This limits our ability to make a definitive comparison between the two approaches in terms of resource efficiency.
+
+3. Impact of reshuffling in dynamic allocation:
+   No explicit reshuffling events were observed in the logs for either experiment. This suggests that the workload may not have been large or complex enough to trigger significant executor scaling or data redistribution in the dynamic allocation scenario.
+
+Summary of Findings:
+1. For this specific workload, static allocation appears to be marginally faster than dynamic allocation, but the difference is negligible (1 second).
+2. The lack of accurate resource usage data prevents us from drawing conclusions about the computational efficiency of dynamic allocation compared to static allocation.
+3. The workload used in these experiments may not have been sufficiently large or complex to showcase the potential benefits of dynamic allocation, such as adapting to changing resource requirements.
+4. Further experiments with larger datasets, more complex computations, and functioning resource monitoring are needed to make a more definitive comparison between static and dynamic allocation strategies.
+5. The observed errors in the dynamic allocation logs (e.g., "Cannot run program "/usr/bin/python3": error=2, No such file or directory") suggest that there might be configuration issues affecting the dynamic allocation experiment, which could have impacted its performance.
+
+Recommendations:
+1. Resolve the Metrics Server issues to obtain accurate resource usage statistics for both allocation strategies.
+2. Conduct experiments with larger datasets and more complex computations to better demonstrate the potential benefits of dynamic allocation for jobs with unknown or varying loads.
+3. Investigate and resolve the Python-related errors in the dynamic allocation experiment to ensure a fair comparison.
+4. Consider running multiple iterations of each experiment to account for variability and obtain more statistically significant results.
+5. Explore different configurations for dynamic allocation (e.g., adjusting scaling thresholds, initial executor count) to optimize its performance for various workload types.
+
+In conclusion, while we cannot definitively state that dynamic allocation is less expensive computationally based on these results, the experiments highlight the importance of proper configuration and the need for more comprehensive testing with diverse workloads to fully evaluate the benefits of dynamic allocation in Spark.

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    spark-role: executor
+spec:
+  volumes:
+    - name: spark-config
+      configMap:
+        name: spark-config
+  containers:
+    - name: spark-kubernetes-executor
+      volumeMounts:
+        - name: spark-config
+          mountPath: /opt/spark/conf

@@ -1,0 +1,7 @@
+This is a sample input file for our Spark word count job.
+It contains multiple lines with various words.
+Some words may appear multiple times in this file.
+The word count job will count the occurrences of each word.
+Spark dynamic allocation and static allocation will be compared using this input.
+We will measure the computational efficiency of both approaches.
+The experiment aims to determine if dynamic allocation is beneficial for batch jobs with unknown loads.
